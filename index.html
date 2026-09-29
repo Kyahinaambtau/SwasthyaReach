@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f6f1">
+  <meta name="description" content="SwasthyaReach helps people find public healthcare services around Greater Noida and Noida.">
+  <title>SwasthyaReach — Public healthcare, within reach</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --forest: #103e35;
+      --forest-deep: #0b2d28;
+      --leaf: #2f755f;
+      --lime: #d5f36b;
+      --cream: #f4f6f1;
+      --card: #fffefa;
+      --ink: #16352e;
+      --muted: #71827a;
+      --line: #dfe7df;
+      --coral: #d86c50;
+      --shadow: 0 18px 45px rgba(22, 53, 46, .08);
+      font-family: 'DM Sans', 'Segoe UI', Arial, sans-serif;
+      color: var(--ink);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--cream); color: var(--ink); line-height: 1.55; }
+    a { color: inherit; }
+    button, input { font: inherit; }
+    .shell { width: min(1160px, calc(100% - 44px)); margin: 0 auto; }
+    .topbar { height: 82px; display: flex; align-items: center; justify-content: space-between; }
+    .brand { text-decoration: none; display: inline-flex; align-items: center; gap: 11px; font: 800 1.16rem 'Manrope', sans-serif; letter-spacing: -.045em; color: var(--forest); }
+    .brand-mark { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 13px; background: var(--forest); box-shadow: 0 7px 16px rgba(16,62,53,.18); }
+    .brand-mark svg { width: 21px; height: 21px; }
+    .nav { display: flex; align-items: center; gap: 30px; }
+    .nav a { text-decoration: none; color: #61766d; font-size: .9rem; font-weight: 650; }
+    .nav a:hover { color: var(--forest); }
+    .location-pill { display: inline-flex; align-items: center; gap: 8px; padding: 9px 13px; border: 1px solid var(--line); border-radius: 999px; background: rgba(255,255,255,.68); color: var(--forest); font-size: .83rem; font-weight: 700; }
+    .location-pill svg { width: 15px; height: 15px; }
+
+    .hero { position: relative; min-height: 486px; isolation: isolate; overflow: hidden; border-radius: 29px; background: var(--forest); box-shadow: 0 28px 70px rgba(19, 61, 49, .19); }
+    .hero-photo { position: absolute; z-index: -2; inset: 0 0 0 38%; overflow: hidden; }
+    .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: center 43%; display: block; }
+    .hero::before { content: ''; position: absolute; z-index: -1; inset: 0; background: linear-gradient(90deg, #103e35 0%, #103e35 36%, rgba(16,62,53,.93) 47%, rgba(16,62,53,.34) 75%, rgba(16,62,53,.12) 100%); }
+    .hero::after { content: ''; pointer-events: none; position: absolute; z-index: -1; width: 360px; height: 360px; border: 1px solid rgba(213,243,107,.22); border-radius: 50%; right: 23%; top: -210px; box-shadow: 0 0 0 35px rgba(213,243,107,.035), 0 0 0 70px rgba(213,243,107,.025); }
+    .hero-inner { min-height: 486px; display: flex; align-items: center; padding: 56px clamp(26px, 6vw, 74px); }
+    .hero-copy { width: min(560px, 58%); color: white; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 8px; padding: 7px 11px; border: 1px solid rgba(255,255,255,.24); background: rgba(255,255,255,.08); border-radius: 999px; color: #e8f5e9; font-size: .77rem; font-weight: 700; letter-spacing: .04em; }
+    .eyebrow .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 0 4px rgba(213,243,107,.14); }
+    h1, h2, h3 { font-family: 'Manrope', 'Segoe UI', sans-serif; }
+    h1 { margin: 22px 0 15px; max-width: 580px; font-size: clamp(2.8rem, 5.7vw, 4.65rem); line-height: 1.03; letter-spacing: -.065em; font-weight: 700; }
+    h1 em { color: var(--lime); font-style: normal; }
+    .hero-copy > p { max-width: 450px; color: rgba(255,255,255,.78); font-size: 1.04rem; margin: 0; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 11px; margin-top: 28px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 47px; padding: 0 17px; border: 1px solid transparent; border-radius: 13px; text-decoration: none; font-weight: 750; font-size: .91rem; transition: transform .18s ease, background .18s ease, box-shadow .18s ease; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-light { background: var(--lime); color: var(--forest-deep); box-shadow: 0 8px 20px rgba(0,0,0,.12); }
+    .btn-light:hover { background: #e2ff83; }
+    .btn-glass { color: white; border-color: rgba(255,255,255,.3); background: rgba(255,255,255,.08); }
+    .btn-glass:hover { background: rgba(255,255,255,.16); }
+    .btn svg { width: 17px; height: 17px; }
+    .hero-credit { position: absolute; bottom: 12px; right: 16px; color: rgba(255,255,255,.7); font-size: .68rem; text-decoration: none; }
+    .hero-credit:hover { color: white; }
+    .trust-row { display: flex; align-items: center; flex-wrap: wrap; gap: 22px; margin: 21px 4px 0; color: #687a71; font-size: .83rem; font-weight: 650; }
+    .trust-item { display: inline-flex; align-items: center; gap: 7px; }
+    .trust-item svg { width: 16px; height: 16px; color: var(--leaf); }
+
+    .emergency { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin: 34px 0 61px; padding: 18px 22px; border: 1px solid #efd7c7; border-radius: 18px; background: #fff8f1; }
+    .emergency-copy { display: flex; align-items: center; gap: 14px; }
+    .emergency-icon { flex: 0 0 42px; width: 42px; height: 42px; display: grid; place-items: center; border-radius: 14px; background: #f7e1d4; color: #a94e35; }
+    .emergency-icon svg { width: 21px; height: 21px; }
+    .emergency strong { display: block; font: 750 1rem 'Manrope', sans-serif; color: #613728; }
+    .emergency p { margin: 2px 0 0; color: #806457; font-size: .86rem; }
+    .emergency .btn { min-height: 42px; background: var(--coral); color: white; }
+    .emergency .btn:hover { background: #c65a3f; }
+
+    .section { padding-bottom: 72px; }
+    .section-heading { display: flex; justify-content: space-between; align-items: end; gap: 20px; margin-bottom: 21px; }
+    .section-kicker { color: var(--leaf); font-size: .75rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+    h2 { margin: 5px 0 0; font-size: clamp(1.8rem, 3vw, 2.45rem); line-height: 1.12; letter-spacing: -.05em; color: var(--forest); }
+    .section-heading p { max-width: 400px; margin: 0 0 3px; color: var(--muted); font-size: .93rem; }
+    .find-panel { display: flex; align-items: center; gap: 12px; padding: 10px 12px 10px 15px; border: 1px solid #d9e4db; border-radius: 17px; background: white; box-shadow: 0 9px 25px rgba(22,53,46,.055); }
+    .find-panel > svg { flex: 0 0 auto; width: 20px; height: 20px; color: #709183; }
+    .search { flex: 1; min-width: 0; border: 0; outline: 0; background: transparent; color: var(--ink); font-size: .97rem; }
+    .search::placeholder { color: #99a8a0; }
+    .search:focus-visible { outline: 2px solid transparent; }
+    .result-count { white-space: nowrap; padding: 7px 11px; border-radius: 999px; background: #eef4eb; color: #527263; font-size: .77rem; font-weight: 750; }
+    .filters { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 14px 0 18px; }
+    .filter { border: 1px solid #dbe5dc; border-radius: 999px; background: transparent; padding: 8px 14px; color: #667a70; font-size: .83rem; font-weight: 700; cursor: pointer; transition: .18s ease; }
+    .filter:hover { border-color: #9cb8a6; color: var(--forest); }
+    .filter[aria-pressed="true"] { background: var(--forest); color: white; border-color: var(--forest); }
+    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 15px; }
+    .card { min-height: 350px; display: flex; flex-direction: column; padding: 19px; background: var(--card); border: 1px solid #e0e8df; border-radius: 20px; box-shadow: 0 10px 28px rgba(26,64,50,.045); transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+    .card:hover { transform: translateY(-4px); border-color: #c1d5c6; box-shadow: 0 18px 40px rgba(26,64,50,.1); }
+    .card-top { display: flex; justify-content: space-between; align-items: start; gap: 9px; }
+    .card-icon { width: 45px; height: 45px; display: grid; place-items: center; border-radius: 15px; background: #e7f0e8; color: var(--leaf); }
+    .card-icon svg { width: 22px; height: 22px; }
+    .kind { display: inline-flex; align-items: center; gap: 5px; padding: 6px 9px; border-radius: 999px; background: #eef4ec; color: #557365; font-size: .69rem; font-weight: 800; }
+    .kind svg { width: 12px; height: 12px; }
+    .card h3 { margin: 18px 0 8px; color: var(--forest); font-size: 1.1rem; line-height: 1.28; letter-spacing: -.035em; }
+    .location { display: flex; align-items: start; gap: 6px; color: #75867c; font-size: .79rem; }
+    .location svg { flex: 0 0 auto; width: 15px; height: 15px; margin-top: 2px; color: #8ba297; }
+    .desc { margin: 13px 0 15px; color: #65766d; font-size: .85rem; line-height: 1.55; }
+    .phone-line { margin-top: auto; padding-top: 11px; border-top: 1px solid #edf0e9; color: #5a7065; font-size: .77rem; }
+    .phone-line strong { display: block; margin-top: 2px; color: var(--forest); font-size: .88rem; }
+    .no-phone { color: #87938b; font-style: italic; }
+    .actions { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 13px; }
+    .action { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 35px; padding: 0 10px; border: 1px solid #dce6dc; border-radius: 10px; background: white; color: #466b5a; text-decoration: none; font-size: .75rem; font-weight: 750; transition: .18s ease; }
+    .action svg { width: 14px; height: 14px; }
+    .action:hover { border-color: #a8c4ae; background: #f5faf3; }
+    .action.call { background: var(--forest); border-color: var(--forest); color: white; }
+    .action.call:hover { background: var(--leaf); }
+    .empty { display: none; padding: 34px 20px; border: 1px dashed #c8d8cd; border-radius: 18px; color: var(--muted); text-align: center; background: rgba(255,255,255,.5); }
+
+    .how { display: grid; grid-template-columns: .95fr 1.4fr; gap: 50px; align-items: center; padding: 28px 0 74px; }
+    .how-intro p { max-width: 360px; color: var(--muted); font-size: .95rem; }
+    .how-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 11px; }
+    .how-step { min-height: 142px; padding: 16px; border: 1px solid var(--line); border-radius: 16px; background: rgba(255,255,255,.62); }
+    .step-no { width: 27px; height: 27px; display: grid; place-items: center; border-radius: 9px; background: var(--lime); color: var(--forest); font: 800 .77rem 'Manrope', sans-serif; }
+    .how-step strong { display: block; margin-top: 11px; color: var(--forest); font: 750 .88rem 'Manrope', sans-serif; }
+    .how-step p { margin: 5px 0 0; color: var(--muted); font-size: .76rem; line-height: 1.45; }
+
+    .source-panel { display: flex; align-items: center; justify-content: space-between; gap: 25px; margin-bottom: 38px; padding: 21px 24px; border: 1px solid #dce7dd; border-radius: 19px; background: #ebf1e8; }
+    .source-copy { display: flex; align-items: center; gap: 13px; }
+    .source-icon { width: 43px; height: 43px; flex: 0 0 43px; display: grid; place-items: center; border-radius: 14px; background: white; color: var(--leaf); }
+    .source-icon svg { width: 20px; height: 20px; }
+    .source-panel strong { display: block; color: var(--forest); font: 750 .96rem 'Manrope', sans-serif; }
+    .source-panel p { margin: 2px 0 0; color: #6d8174; font-size: .82rem; }
+    .source-panel a { flex: 0 0 auto; display: inline-flex; align-items: center; gap: 7px; color: var(--forest); text-decoration: none; font-size: .82rem; font-weight: 800; }
+    .source-panel a:hover { text-decoration: underline; }
+    .source-panel a svg { width: 15px; height: 15px; }
+    .safety-note { display: flex; align-items: start; gap: 11px; max-width: 810px; margin: 0 auto 54px; color: #76857c; font-size: .8rem; text-align: center; }
+    .safety-note svg { flex: 0 0 16px; width: 16px; height: 16px; margin-top: 2px; color: #89998e; }
+    .safety-note p { margin: 0; }
+    footer { padding: 21px 0 30px; border-top: 1px solid #e1e8df; color: #839087; font-size: .75rem; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 18px; }
+    footer a { color: #61796c; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+    .footer-brand { color: var(--forest); font-weight: 800; }
+    :focus-visible { outline: 3px solid #94b93c; outline-offset: 3px; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+    @media (max-width: 900px) {
+      .hero, .hero-inner { min-height: 435px; }
+      .hero-copy { width: 62%; }
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .how { grid-template-columns: 1fr; gap: 19px; }
+      .how-intro p { max-width: 580px; }
+    }
+    @media (max-width: 640px) {
+      .shell { width: min(100% - 28px, 540px); }
+      .topbar { height: 68px; }
+      .nav { display: none; }
+      .location-pill { padding: 8px 10px; font-size: .74rem; }
+      .hero { min-height: 545px; border-radius: 23px; }
+      .hero-photo { inset: 0; }
+      .hero-photo img { object-position: 56% center; }
+      .hero::before { background: linear-gradient(0deg, rgba(9,42,35,.98) 0%, rgba(12,49,41,.89) 45%, rgba(11,43,37,.38) 100%); }
+      .hero::after { right: -120px; top: -150px; }
+      .hero-inner { min-height: 545px; align-items: end; padding: 27px 22px 40px; }
+      .hero-copy { width: 100%; }
+      h1 { max-width: 460px; font-size: clamp(2.65rem, 12vw, 3.65rem); }
+      .hero-copy > p { font-size: .95rem; }
+      .hero-credit { right: 12px; bottom: 9px; }
+      .trust-row { gap: 12px 17px; font-size: .77rem; }
+      .emergency { align-items: start; margin: 23px 0 47px; padding: 15px; }
+      .emergency .btn { padding: 0 12px; white-space: nowrap; }
+      .emergency-copy { gap: 10px; }
+      .emergency-icon { flex-basis: 36px; width: 36px; height: 36px; border-radius: 12px; }
+      .emergency strong { font-size: .88rem; }
+      .emergency p { font-size: .76rem; }
+      .section { padding-bottom: 48px; }
+      .section-heading { display: block; }
+      .section-heading p { margin-top: 8px; }
+      .find-panel { padding: 8px 9px 8px 12px; }
+      .result-count { font-size: .69rem; padding: 6px 8px; }
+      .grid { grid-template-columns: 1fr; }
+      .card { min-height: 0; }
+      .how { padding: 0 0 49px; }
+      .how-list { grid-template-columns: 1fr; }
+      .how-step { min-height: 0; display: grid; grid-template-columns: 31px 1fr; column-gap: 10px; align-items: start; }
+      .how-step strong { margin-top: 0; }
+      .how-step p { grid-column: 2; }
+      .source-panel { align-items: start; flex-direction: column; gap: 14px; padding: 16px; }
+      .source-panel a { margin-left: 56px; }
+      .safety-note { text-align: left; margin-bottom: 38px; }
+      .footer-inner { align-items: start; flex-direction: column; gap: 8px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    }
+  
+    .lang-toggle { cursor: pointer; font: inherit; }
+    .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .card { min-height: 430px; }
+    .status-row { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; margin-top: 12px; }
+    .status { padding: 8px 9px; border-radius: 10px; background: #f5f7f1; color: #758378; font-size: .69rem; line-height: 1.35; }
+    .status b { display: block; margin-bottom: 3px; color: #587465; font-size: .63rem; }
+    .availability-note { margin-top: 14px; padding: 11px 14px; border-left: 3px solid #eab85f; border-radius: 0 10px 10px 0; background: #fff8e9; color: #746643; font-size: .77rem; }
+    .support-section { padding: 15px 0 66px; }
+    .support-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 15px; }
+    .support-card { padding: 21px; border: 1px solid #dfe7df; border-radius: 19px; background: #fffefa; box-shadow: 0 10px 28px rgba(26,64,50,.045); }
+    .support-card h3 { margin: 0 0 7px; color: var(--forest); font-size: 1.12rem; }
+    .support-card > p { margin: 0 0 15px; color: var(--muted); font-size: .84rem; }
+    .form-row { display: grid; grid-template-columns: 1.1fr 1fr 1fr; gap: 9px; margin: 13px 0; }
+    .field { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+    .field label { color: #61766d; font-size: .72rem; font-weight: 750; }
+    .field input, .field select { width: 100%; min-height: 39px; padding: 7px 9px; border: 1px solid #d9e4db; border-radius: 9px; background: white; color: var(--ink); font: inherit; font-size: .78rem; }
+    .support-card .btn { min-height: 40px; font-size: .82rem; }
+    .support-card .btn:not(.btn-light) { background: #f0f4eb; border-color: #dce6dc; color: var(--forest); }
+    .support-card .btn:not(.btn-light):hover { background: #e6efe2; }
+    .source-links a { margin-left: 0 !important; }
+    .support-card .btn + .btn { margin-left: 5px; }
+    .tool-status { min-height: 18px; margin-top: 8px; color: #527263; font-size: .76rem; }
+    .helper-output { display: none; margin-top: 14px; padding: 13px; border-radius: 12px; background: #edf4eb; color: #5c7065; font-size: .8rem; }
+    .helper-output strong { color: var(--forest); }
+    .helper-output p { margin: 6px 0; }
+    .helper-output a { color: var(--forest); font-weight: 750; }
+    .quote-panel { margin: 4px 0 34px; padding: 25px 29px; border-radius: 21px; background: var(--forest); color: white; box-shadow: 0 18px 45px rgba(22,53,46,.11); }
+    .quote-brand { display: block; margin-bottom: 8px; color: var(--lime); font-size: .72rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+    .quote-panel blockquote { margin: 0; font: 600 clamp(1rem, 2vw, 1.25rem)/1.55 'Manrope','Segoe UI',sans-serif; }
+    .source-links { display: flex; flex-wrap: wrap; gap: 10px 18px; }
+    .source-links a { color: var(--forest); text-decoration: none; font-size: .79rem; font-weight: 750; }
+    .source-links a:hover { text-decoration: underline; }
+    body.large-text .support-card, body.large-text .helper-output { font-size: 1.08rem; }
+    @media (max-width: 900px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .form-row { grid-template-columns: 1fr 1fr; } .form-row .field:first-child { grid-column: span 2; } }
+    @media (max-width: 640px) { .grid, .support-grid { grid-template-columns: 1fr; } .card { min-height: 0; } .form-row { grid-template-columns: 1fr; } .form-row .field:first-child { grid-column: auto; } .support-card { padding: 16px; } .quote-panel { padding: 20px; } .status-row { grid-template-columns: 1fr 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="SwasthyaReach home">
+        <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M10 3.5h4v6.5h6.5v4H14v6.5h-4V14H3.5v-4H10V3.5Z" fill="#D5F36B"/></svg></span>
+        <span>SwasthyaReach</span>
+      </a>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="#services" data-i18n="navFind">Find care</a>
+        <a href="#support" data-i18n="navSupport">Care support</a>
+        <a href="#sources" data-i18n="navSources">Sources</a>
+      </nav>
+      <button class="location-pill lang-toggle" id="language" type="button" aria-label="Switch language">हिन्दी</button>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-photo" aria-hidden="true"><img src="https://images.unsplash.com/photo-1758691462878-6edc3d3da1be?auto=format&fit=crop&w=1800&q=85" alt="" fetchpriority="high"></div>
+        <div class="hero-inner">
+          <div class="hero-copy">
+            <span class="eyebrow"><span class="dot"></span><span data-i18n="heroEyebrow">YOUR LOCAL HEALTH GUIDE</span></span>
+            <h1 id="hero-title"><span data-i18n="heroTitleFirst">Public care starts with</span> <em data-i18n="heroTitleAccent">knowing where to go.</em></h1>
+            <p data-i18n="heroIntro">Find public healthcare nearby, see official details, and stay connected to care.</p>
+            <div class="hero-actions">
+              <a class="btn btn-light" href="#services"><span data-i18n="explore">Find public services</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h13m-5-5 5 5-5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+              <a class="btn btn-glass" href="tel:108"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.6 3.8h3l1.5 4.1-2 1.6a15.2 15.2 0 0 0 5.4 5.4l1.6-2 4.1 1.5v3a2 2 0 0 1-2.2 2A16 16 0 0 1 4.6 6a2 2 0 0 1 2-2.2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg><span data-i18n="emergency">Emergency: 108</span></a>
+            </div>
+          </div>
+        </div>
+        <a class="hero-credit" href="https://unsplash.com/photos/doctor-consults-with-patient-in-medical-office-iyeUwItlIPk" target="_blank" rel="noopener">Photo: Vitaly Gariev / Unsplash</a>
+      </section>
+
+      <div class="trust-row" aria-label="Service features">
+        <span class="trust-item"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12 4 4L19 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="trustSources">Official sources</span></span>
+        <span class="trust-item"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21s7-3.5 7-9V5l-7-2-7 2v7c0 5.5 7 9 7 9Z" stroke="currentColor" stroke-width="1.8"/><path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span data-i18n="trustLanguage">English + हिन्दी</span></span>
+        <span class="trust-item"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M9 7h6M9 11h6M9 15h3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span data-i18n="trustSimple">Simple, low-data access</span></span>
+      </div>
+
+      <section class="emergency" aria-label="Emergency ambulance information">
+        <div class="emergency-copy">
+          <span class="emergency-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 8v8m-4-4h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/></svg></span>
+          <div><strong data-i18n="emergencyTitle">Need an ambulance?</strong><p data-i18n="emergencyText">Gautam Buddha Nagar lists 108 for ambulance assistance.</p></div>
+        </div>
+        <a class="btn" href="tel:108"><span data-i18n="emergencyButton">Call 108</span><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.6 3.8h3l1.5 4.1-2 1.6a15.2 15.2 0 0 0 5.4 5.4l1.6-2 4.1 1.5v3a2 2 0 0 1-2.2 2A16 16 0 0 1 4.6 6a2 2 0 0 1 2-2.2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></a>
+      </section>
+
+      <section class="section" id="services" aria-labelledby="services-title">
+        <div class="section-heading">
+          <div><span class="section-kicker" data-i18n="servicesKicker">LOCAL PUBLIC DIRECTORY</span><h2 id="services-title" data-i18n="servicesHeading">Find the right facility.</h2></div>
+          <p data-i18n="servicesIntro">Browse official public healthcare entry points in Greater Noida and Noida.</p>
+        </div>
+        <div class="find-panel">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8" stroke="currentColor" stroke-width="1.8"/><path d="m16 16 4.4 4.4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          <label class="sr-only" for="search" data-i18n="searchLabel">Search by facility or area</label>
+          <input class="search" id="search" type="search" data-placeholder="searchPlaceholder" placeholder="Search facility or area…" autocomplete="off">
+          <span class="result-count" id="count" aria-live="polite"></span>
+        </div>
+        <div class="filters" role="group" aria-label="Filter facilities"><button class="filter" type="button" data-filter="all" aria-pressed="true" data-i18n="allFacilities">All facilities</button><button class="filter" type="button" data-filter="hospital" aria-pressed="false" data-i18n="hospitals">Hospitals</button></div>
+        <div class="grid" id="cards" aria-live="polite"></div>
+        <div class="empty" id="empty" data-i18n="noResults">No matching facilities found.</div>
+        <div class="availability-note" data-i18n="queueNote">Availability and queue information are not connected to a live facility feed in this prototype. No wait-time estimate is invented; confirm directly with the provider.</div>
+      </section>
+
+      <section class="section support-section" id="support" aria-labelledby="support-title">
+        <div class="section-heading"><div><span class="section-kicker" data-i18n="supportKicker">CARE, MADE SIMPLER</span><h2 id="support-title" data-i18n="supportHeading">Stay connected to care.</h2></div><p data-i18n="supportIntro">Set a follow-up reminder or get help navigating public services.</p></div>
+        <div class="support-grid">
+          <article class="support-card"><h3 data-i18n="reminderTitle">Follow-up reminder</h3><p data-i18n="reminderText">Create a calendar reminder on this device. No appointment or health details are sent to a server.</p><div class="form-row"><div class="field"><label for="reminderFacility" data-i18n="facilityLabel">Facility</label><select id="reminderFacility"><option value="gims">GIMS, Greater Noida</option><option value="district">Government District Hospital</option></select></div><div class="field"><label for="reminderDate" data-i18n="dateLabel">Date</label><input id="reminderDate" type="date"></div><div class="field"><label for="reminderTime" data-i18n="timeLabel">Time</label><input id="reminderTime" type="time"></div></div><button class="btn btn-light" id="makeReminder" type="button" data-i18n="createReminder">Download calendar reminder</button><div class="tool-status" id="reminderStatus" aria-live="polite"></div></article>
+          <article class="support-card"><h3 data-i18n="helperTitle">Community Health Worker access</h3><p data-i18n="helperText">A simplified, larger-text view supports a community health worker assisting someone in person.</p><div class="field"><label for="helperFacility" data-i18n="facilityLabel">Facility</label><select id="helperFacility"><option value="gims">GIMS, Greater Noida</option><option value="district">Government District Hospital</option></select></div><div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:12px"><button class="btn btn-light" id="makeHelper" type="button" data-i18n="showHelper">Open assisted view</button><button class="btn" id="largeText" type="button" data-i18n="largeText">Increase text size</button></div><div class="helper-output" id="helperOutput" aria-live="polite"></div></article>
+        </div>
+      </section>
+
+      <section class="source-panel" id="sources" aria-label="Official information sources">
+        <div class="source-copy"><span class="source-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3 4.5 6v5.5c0 5 7.5 9.5 7.5 9.5s7.5-4.5 7.5-9.5V6L12 3Z" stroke="currentColor" stroke-width="1.7"/><path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><div><strong data-i18n="sourcesHeading">Information you can trace</strong><p data-i18n="sourcesText">Check current facility details and appointment guidance with official providers.</p></div></div>
+        <div class="source-links"><a href="https://www.gims.ac.in/contact-us.html" target="_blank" rel="noopener" data-i18n="sourceGims">GIMS · Contact</a><a href="https://gims.ac.in/online-opd-booking.html" target="_blank" rel="noopener" data-i18n="sourceOpd">GIMS · Online OPD</a><a href="https://gbnagar.nic.in/health/" target="_blank" rel="noopener" data-i18n="sourceDistrict">District Health · GB Nagar</a><a href="https://gbnagar.nic.in/public-utility/govt-district-hospital/" target="_blank" rel="noopener" data-i18n="sourceHospital">District Hospital listing</a></div>
+      </section>
+
+      <section class="quote-panel" aria-label="SwasthyaReach project quote"><span class="quote-brand">SwasthyaReach</span><blockquote data-i18n="verdictText">“Our technology contributes to equitable access to quality public healthcare, but its sustainability challenge is digital exclusion and maintaining accurate service information. We propose SwasthyaReach.”</blockquote></section>
+    </main>
+    <footer><div class="footer-inner"><span><span class="footer-brand">SwasthyaReach</span> · <span data-i18n="footerTag">Public healthcare, within reach.</span></span><span data-i18n="footerNote">Static low-bandwidth prototype · Queue and availability feeds are not connected.</span></div></footer>
+  </div>
+
+  <script>
+  const copy = {
+    en: {
+      navFind:'Find care',navSupport:'Care support',navSources:'Sources',heroEyebrow:'YOUR LOCAL HEALTH GUIDE',heroTitleFirst:'Public care starts with',heroTitleAccent:'knowing where to go.',heroIntro:'Find public healthcare nearby, see official details, and stay connected to care.',trustSources:'Official sources',trustLanguage:'English + हिन्दी',trustSimple:'Simple, low-data access',emergencyTitle:'Need an ambulance?',emergencyText:'Gautam Buddha Nagar lists 108 for ambulance assistance.',emergencyButton:'Call 108',servicesKicker:'LOCAL PUBLIC DIRECTORY',servicesHeading:'Find the right facility.',servicesIntro:'Browse official public healthcare entry points in Greater Noida and Noida.',supportKicker:'CARE, MADE SIMPLER',supportHeading:'Stay connected to care.',supportIntro:'Set a follow-up reminder or get help navigating public services.',sourcesHeading:'Information you can trace',sourcesText:'Check current facility details and appointment guidance with official providers.',sourceGims:'GIMS · Contact',sourceOpd:'GIMS · Online OPD',sourceDistrict:'District Health · GB Nagar',sourceHospital:'District Hospital listing',nav1:'TECHNOLOGY SNAPSHOT',nav2:'SDG CONNECTION',nav3:'IMPACT AT A GLANCE',nav4:'Our solution',nav5:'Verdict',solutionSectionTitle:'Our solution',challengeKicker:'THE CHALLENGE',solutionKicker:'A SIMPLE, HUMAN-CENTRED APPROACH',sdgMiniTitle:'SDG CONNECTION',sdgMiniIntro:'The project’s strongest links, at a glance.',strongestBadge:'Strongest link',sdgMini3Text:'Better access to care and follow-up.',sdgMini10Text:'Hindi, low-data, and assisted access.',sdgMini9Text:'Digital support for existing public services.',impactMiniTitle:'IMPACT AT A GLANCE',impactPositiveBrief:'Easier service discovery and follow-up may reduce unnecessary repeat visits.',impactRiskBrief:'Digital barriers and outdated details could still leave people behind.',impactRippleBrief:'Demand may rise at busy facilities; privacy-safe usage trends could guide planning.',prototypeTitle:'TRY THE PROTOTYPE',prototypeIntro:'Find a public facility, then explore follow-up and assisted-access features.',canvas:'SDG–TECHNOLOGY MAPPING CANVAS',
+      heroText:'Public healthcare, within reach. A multilingual and low-bandwidth concept for finding the right public facility and staying connected to care.',explore:'Find public services',emergency:'Emergency: 108',
+      snapshotIntro:'A quick view of the access gap, who it affects, and the goals it supports.',problemTitle:'What problem does it solve?',problemText:'It addresses unequal access to public healthcare, long waiting times, difficulty finding the right public facility, and weak follow-up after treatment.',usersTitle:'Who uses or is affected by it?',usersText:'Patients and caregivers—especially in underserved communities—along with public hospitals and clinics, community health workers, and healthcare administrators.',pillPatients:'Patients & caregivers',pillWorkers:'Community health workers',pillClinics:'Public facilities',pillAdmin:'Administrators',
+      directoryTitle:'Public health services',directoryText:'Selected official entry points in Greater Noida and Noida.',searchLabel:'Search by facility or area',searchPlaceholder:'Search facility or area…',allFacilities:'All facilities',hospitals:'Hospitals',noResults:'No matching facilities found.',queueNote:'Availability and queue information are not connected to a live facility feed in this prototype. No wait-time estimate is invented; confirm directly with the provider.',
+      sdgIntro:'Three goals connect to the idea; SDG 3 is the strongest fit.',sdg3:'Good Health and Well-being',sdg3Text:'Supports timely access to appropriate public-health services and follow-up.',sdg10:'Reduced Inequalities',sdg10Text:'Hindi, low-bandwidth, and assisted access can reduce digital barriers.',sdg9:'Industry, Innovation and Infrastructure',sdg9Text:'Uses a simple digital layer to help people navigate existing public infrastructure.',strongest:'Strongest SDG connection: SDG 3.',sdgReason:'The platform supports timely access to appropriate public healthcare services and follow-up, directly contributing to better health and well-being.',
+      impactIntro:'A balanced view of the platform’s likely effects.',positive:'🟢 Positive Impact',negative:'🔴 Negative Impact',unexpected:'🟡 Unexpected Impact',
+      positiveItems:['Makes information about public healthcare services easier to find.','Improves appointment coordination and follow-up, potentially reducing unnecessary repeat visits.'],negativeItems:['People without reliable internet, smartphones, or digital skills may still face barriers.','Outdated or incorrect service information could lead patients to the wrong facility or service.'],unexpectedItems:['Easier service discovery could increase demand at already crowded public facilities.','Privacy-protected, aggregated usage trends could help administrators identify underserved areas and plan resources.'],
+      fixIntro:'A low-bandwidth, multilingual platform with human-assisted access.',ourSolution:'Our solution',solutionText:'A multilingual, low-bandwidth platform showing nearby public healthcare services, service availability, appointment guidance, queue information, and follow-up reminders, with assisted access through community health workers.',featureLanguage:'English + हिन्दी',featureLow:'Low bandwidth',featureAssist:'CHW assisted access',featurePrivacy:'Private by design',sustainTitle:'How will it improve sustainability?',sustainText:'It can reduce unnecessary travel and repeated visits, improve use of existing public-health capacity, and offer low-bandwidth and assisted-access options so digital technology does not create a new barrier.',metricCare:'Care access',metricEquity:'Digital inclusion',metricData:'health data stored',
+      reminderTitle:'Follow-up reminder',reminderText:'Create a calendar reminder on this device. No appointment or health details are sent to a server.',facilityLabel:'Facility',dateLabel:'Date',timeLabel:'Time',createReminder:'Download calendar reminder',reminderDone:'Calendar reminder downloaded. It can be added to your calendar app.',reminderInvalid:'Choose a future date and time.',
+      helperTitle:'Community Health Worker access',helperText:'A simplified, larger-text view supports a community health worker assisting someone in person.',showHelper:'Open assisted view',largeText:'Increase text size',helperTitleLine:'Assisted service summary',helperPlace:'Location',helperCall:'Published contact',helperAvailability:'Availability',helperQueue:'Queue information',helperConfirm:'Confirm service details with the facility. Live queue information is not published here.',
+      verdictText:'“Our technology contributes to equitable access to quality public healthcare, but its sustainability challenge is digital exclusion and maintaining accurate service information. We propose SwasthyaReach.”',footerTag:'Public healthcare, within reach.',footerNote:'Static low-bandwidth prototype · Queue and availability feeds are not connected.',
+      facilityType:'Government public facility',mainContact:'Main contact',emergencyContact:'Control room',availabilityLabel:'SERVICE AVAILABILITY',queueLabel:'QUEUE INFORMATION',notLive:'Confirm with facility',notPublished:'Live feed not connected',appointment:'Online OPD guidance',openGuidance:'Open official OPD page',call:'Call',directions:'Directions',officialSource:'Official source',noPhone:'No direct number on source page',
+      names:{gims:'Government Institute of Medical Sciences (GIMS)',district:'Government District Hospital'},areas:{gims:'Kasna, Greater Noida',district:'Sector 30, Noida'},descriptions:{gims:'Government medical institute and hospital. Official contact and online OPD guidance are available.',district:'Listed by the Gautam Buddha Nagar district administration. Use the official page for current facility information.'},
+    },
+    hi: {
+      navFind:'स्वास्थ्य सेवाएँ',navSupport:'देखभाल सहायता',navSources:'स्रोत',heroEyebrow:'आपका स्थानीय स्वास्थ्य मार्गदर्शक',heroTitleFirst:'सही स्वास्थ्य सेवा तक',heroTitleAccent:'पहुँचना अब आसान।',heroIntro:'नज़दीकी सार्वजनिक स्वास्थ्य सेवाएँ खोजें, आधिकारिक जानकारी देखें और इलाज से जुड़े रहें।',trustSources:'आधिकारिक स्रोत',trustLanguage:'English + हिन्दी',trustSimple:'सरल, कम-डेटा उपयोग',emergencyTitle:'एम्बुलेंस चाहिए?',emergencyText:'गौतम बुद्ध नगर में एम्बुलेंस सहायता के लिए 108 पर कॉल करें।',emergencyButton:'108 पर कॉल करें',servicesKicker:'स्थानीय सार्वजनिक सेवाएँ',servicesHeading:'सही स्वास्थ्य केंद्र खोजें।',servicesIntro:'ग्रेटर नोएडा और नोएडा के आधिकारिक सार्वजनिक स्वास्थ्य केंद्र देखें।',supportKicker:'देखभाल को सरल बनाएँ',supportHeading:'इलाज से जुड़े रहें।',supportIntro:'अनुवर्ती रिमाइंडर बनाएँ या सार्वजनिक सेवाओं की जानकारी में सहायता पाएँ।',sourcesHeading:'जाँची जा सकने वाली जानकारी',sourcesText:'केंद्र की वर्तमान जानकारी और अपॉइंटमेंट मार्गदर्शन के लिए आधिकारिक स्रोत देखें।',sourceGims:'GIMS · संपर्क',sourceOpd:'GIMS · ऑनलाइन OPD',sourceDistrict:'जिला स्वास्थ्य · गौतम बुद्ध नगर',sourceHospital:'जिला अस्पताल सूची',nav1:'प्रौद्योगिकी की झलक',nav2:'SDG से जुड़ाव',nav3:'एक नज़र में प्रभाव',nav4:'हमारा समाधान',nav5:'निष्कर्ष',solutionSectionTitle:'हमारा समाधान',challengeKicker:'समस्या',solutionKicker:'सरल और मानवीय सहायता',sdgMiniTitle:'SDG से जुड़ाव',sdgMiniIntro:'परियोजना के प्रमुख लक्ष्य एक नज़र में।',strongestBadge:'सबसे मज़बूत जुड़ाव',sdgMini3Text:'स्वास्थ्य सेवा और अनुवर्ती सहायता तक बेहतर पहुँच।',sdgMini10Text:'हिंदी, कम डेटा और मानव सहायता।',sdgMini9Text:'मौजूदा सार्वजनिक सेवाओं के लिए डिजिटल सहायता।',impactMiniTitle:'एक नज़र में प्रभाव',impactPositiveBrief:'सेवा और अनुवर्ती सहायता खोजना आसान होने से अनावश्यक दोबारा यात्राएँ घट सकती हैं।',impactRiskBrief:'डिजिटल बाधाएँ और पुरानी जानकारी कुछ लोगों को पीछे छोड़ सकती हैं।',impactRippleBrief:'भीड़भरे केंद्रों पर माँग बढ़ सकती है; गोपनीयता-सुरक्षित उपयोग रुझान योजना में मदद कर सकते हैं।',prototypeTitle:'प्रोटोटाइप देखें',prototypeIntro:'सार्वजनिक केंद्र खोजें और अनुवर्ती रिमाइंडर तथा सहायता सुविधाएँ देखें।',canvas:'SDG–प्रौद्योगिकी मैपिंग कैनवास',
+      heroText:'सार्वजनिक स्वास्थ्य सेवा, अब करीब। सही सरकारी स्वास्थ्य केंद्र ढूँढने और इलाज से जुड़े रहने का बहुभाषी, कम-डेटा वाला विचार।',explore:'सार्वजनिक सेवाएँ खोजें',emergency:'आपातकाल: 108',
+      snapshotIntro:'समस्या, प्रभावित लोग और स्थानीय सेवा खोजने का कार्यशील प्रोटोटाइप।',problemTitle:'यह किस समस्या का समाधान करता है?',problemText:'यह सार्वजनिक स्वास्थ्य सेवा तक असमान पहुँच, लंबा इंतज़ार, सही सरकारी केंद्र ढूँढने में कठिनाई और इलाज के बाद कमजोर अनुवर्ती सहायता को संबोधित करता है।',usersTitle:'कौन इसका उपयोग करता है या प्रभावित होता है?',usersText:'मरीज़ और उनकी देखभाल करने वाले—विशेषकर कम-सुविधा वाले समुदायों में—साथ ही सरकारी अस्पताल, क्लिनिक, सामुदायिक स्वास्थ्यकर्मी और स्वास्थ्य प्रशासक।',pillPatients:'मरीज़ और देखभालकर्ता',pillWorkers:'सामुदायिक स्वास्थ्यकर्मी',pillClinics:'सरकारी केंद्र',pillAdmin:'प्रशासक',
+      directoryTitle:'सार्वजनिक स्वास्थ्य सेवाएँ',directoryText:'ग्रेटर नोएडा और नोएडा के चुने हुए आधिकारिक संपर्क।',searchLabel:'केंद्र या क्षेत्र से खोजें',searchPlaceholder:'केंद्र या क्षेत्र खोजें…',allFacilities:'सभी केंद्र',hospitals:'अस्पताल',noResults:'कोई मिलता-जुलता केंद्र नहीं मिला।',queueNote:'इस प्रोटोटाइप में उपलब्धता और कतार की जानकारी किसी लाइव केंद्र फ़ीड से जुड़ी नहीं है। प्रतीक्षा समय का अनुमान नहीं गढ़ा गया है; केंद्र से सीधे पुष्टि करें।',
+      sdgIntro:'यह विचार तीन लक्ष्यों से जुड़ता है; सबसे मजबूत संबंध SDG 3 से है।',sdg3:'अच्छा स्वास्थ्य और खुशहाली',sdg3Text:'उपयुक्त सार्वजनिक स्वास्थ्य सेवाओं और अनुवर्ती सहायता तक समय पर पहुँच में मदद।',sdg10:'असमानताओं में कमी',sdg10Text:'हिंदी, कम-डेटा और सहायता-आधारित उपयोग डिजिटल बाधाएँ घटा सकते हैं।',sdg9:'उद्योग, नवाचार और आधारभूत संरचना',sdg9Text:'मौजूदा सार्वजनिक स्वास्थ्य ढाँचे तक पहुँच को सरल बनाने के लिए डिजिटल साधन।',strongest:'सबसे मजबूत SDG संबंध: SDG 3.',sdgReason:'प्लेटफ़ॉर्म उचित सार्वजनिक स्वास्थ्य सेवाओं और अनुवर्ती सहायता तक समय पर पहुँच का समर्थन करता है।',
+      impactIntro:'प्लेटफ़ॉर्म के संभावित प्रभावों का संतुलित आकलन।',positive:'🟢 सकारात्मक प्रभाव',negative:'🔴 नकारात्मक प्रभाव',unexpected:'🟡 अप्रत्याशित प्रभाव',
+      positiveItems:['सार्वजनिक स्वास्थ्य सेवाओं की जानकारी ढूँढना आसान बनाता है।','अपॉइंटमेंट और अनुवर्ती सहायता में तालमेल सुधारकर अनावश्यक दोबारा यात्राएँ घटा सकता है।'],negativeItems:['विश्वसनीय इंटरनेट, स्मार्टफोन या डिजिटल कौशल न होने पर बाधाएँ बनी रह सकती हैं।','पुरानी या गलत जानकारी मरीज़ को गलत केंद्र या सेवा तक पहुँचा सकती है।'],unexpectedItems:['सेवाएँ आसानी से मिलने पर पहले से भीड़भरे केंद्रों की माँग बढ़ सकती है।','गोपनीयता-सुरक्षित, समेकित उपयोग रुझान प्रशासकों को कम-सेवा वाले क्षेत्रों की पहचान और संसाधन योजना में मदद कर सकते हैं।'],
+      fixIntro:'कम-डेटा, बहुभाषी प्लेटफ़ॉर्म और इंसानी सहायता।',ourSolution:'हमारा समाधान',solutionText:'एक बहुभाषी, कम-डेटा वाला प्लेटफ़ॉर्म जो नज़दीकी सार्वजनिक स्वास्थ्य सेवाएँ, उपलब्धता, अपॉइंटमेंट मार्गदर्शन, कतार की जानकारी और अनुवर्ती रिमाइंडर दिखाता है; सामुदायिक स्वास्थ्यकर्मी भी लोगों की सहायता कर सकते हैं।',featureLanguage:'English + हिन्दी',featureLow:'कम डेटा',featureAssist:'स्वास्थ्यकर्मी सहायता',featurePrivacy:'गोपनीयता प्राथमिक',sustainTitle:'यह टिकाऊपन कैसे बढ़ाएगा?',sustainText:'यह अनावश्यक यात्रा और दोबारा आने की ज़रूरत घटा सकता है, मौजूदा सार्वजनिक स्वास्थ्य क्षमता का बेहतर उपयोग कर सकता है और कम-डेटा तथा मानव-सहायता विकल्प देकर डिजिटल बाधाएँ कम कर सकता है।',metricCare:'सेवा तक पहुँच',metricEquity:'डिजिटल समावेशन',metricData:'स्वास्थ्य डेटा संग्रह',
+      reminderTitle:'अनुवर्ती रिमाइंडर',reminderText:'इस डिवाइस पर कैलेंडर रिमाइंडर बनाएँ। अपॉइंटमेंट या स्वास्थ्य जानकारी किसी सर्वर को नहीं भेजी जाती।',facilityLabel:'स्वास्थ्य केंद्र',dateLabel:'तारीख',timeLabel:'समय',createReminder:'कैलेंडर रिमाइंडर डाउनलोड करें',reminderDone:'कैलेंडर रिमाइंडर डाउनलोड हो गया। इसे अपने कैलेंडर ऐप में जोड़ सकते हैं।',reminderInvalid:'भविष्य की तारीख और समय चुनें।',
+      helperTitle:'सामुदायिक स्वास्थ्यकर्मी सहायता',helperText:'सरल और बड़े अक्षरों वाला दृश्य, आमने-सामने सहायता देने वाले स्वास्थ्यकर्मी के लिए।',showHelper:'सहायता दृश्य खोलें',largeText:'अक्षर बड़े करें',helperTitleLine:'सेवा का सहायता सारांश',helperPlace:'स्थान',helperCall:'प्रकाशित संपर्क',helperAvailability:'सेवा उपलब्धता',helperQueue:'कतार की जानकारी',helperConfirm:'सेवा की जानकारी केंद्र से पक्की करें। यहाँ लाइव कतार की जानकारी प्रकाशित नहीं है।',
+      verdictText:'“हमारी तकनीक गुणवत्तापूर्ण सार्वजनिक स्वास्थ्य सेवा तक समान पहुँच में योगदान देती है, लेकिन इसकी टिकाऊपन की चुनौती डिजिटल बहिष्करण और सटीक सेवा जानकारी बनाए रखना है। हम SwasthyaReach प्रस्तावित करते हैं।”',footerTag:'सार्वजनिक स्वास्थ्य सेवा, अब करीब।',footerNote:'कम-डेटा वाला प्रोटोटाइप · कतार और उपलब्धता फ़ीड जुड़े नहीं हैं।',
+      facilityType:'सरकारी स्वास्थ्य केंद्र',mainContact:'मुख्य संपर्क',emergencyContact:'कंट्रोल रूम',availabilityLabel:'सेवा उपलब्धता',queueLabel:'कतार की जानकारी',notLive:'केंद्र से पुष्टि करें',notPublished:'लाइव फ़ीड जुड़ी नहीं',appointment:'ऑनलाइन OPD मार्गदर्शन',openGuidance:'आधिकारिक OPD पेज खोलें',call:'कॉल करें',directions:'दिशा देखें',officialSource:'आधिकारिक स्रोत',noPhone:'स्रोत पेज पर सीधा नंबर नहीं',
+      names:{gims:'सरकारी आयुर्विज्ञान संस्थान (GIMS)',district:'सरकारी जिला अस्पताल'},areas:{gims:'कासना, ग्रेटर नोएडा',district:'सेक्टर 30, नोएडा'},descriptions:{gims:'सरकारी चिकित्सा संस्थान और अस्पताल। आधिकारिक संपर्क और ऑनलाइन OPD मार्गदर्शन उपलब्ध है।',district:'गौतम बुद्ध नगर जिला प्रशासन की सूची में शामिल। वर्तमान जानकारी के लिए आधिकारिक पेज देखें।'},
+    }
+  };
+
+
+  const facilities = {
+    gims:{key:'gims',category:'hospital',address:'Kasna, Greater Noida, Gautam Buddha Nagar 201310, Uttar Pradesh',phone:'+91 120 234 1738',emergency:'+91 730 388 4224',source:'https://www.gims.ac.in/contact-us.html',appointmentSource:'https://gims.ac.in/online-opd-booking.html'},
+    district:{key:'district',category:'hospital',address:'Sector 30, Noida, Gautam Buddha Nagar, Uttar Pradesh',phone:'',emergency:'',source:'https://gbnagar.nic.in/public-utility/govt-district-hospital/',appointmentSource:''}
+  };
+  let lang='en',selected='all';
+  const $=id=>document.getElementById(id);
+  function tr(key){return copy[lang][key]||copy.en[key]||key}
+  function phoneIcon(){return '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6.6 3.8h3l1.5 4.1-2 1.6a15.2 15.2 0 0 0 5.4 5.4l1.6-2 4.1 1.5v3a2 2 0 0 1-2.2 2A16 16 0 0 1 4.6 6a2 2 0 0 1 2-2.2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>'}
+  function pinIcon(){return '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M19 10.2c0 5-7 10.3-7 10.3S5 15.2 5 10.2a7 7 0 1 1 14 0Z" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="10" r="2" stroke="currentColor" stroke-width="1.7"/></svg>'}
+  function clinicIcon(){return '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 20V7l8-3 8 3v13M2.5 20h19M12 8v5m-2.5-2.5h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>'}
+  function setLanguage(next){
+    lang=next;document.documentElement.lang=lang;
+    document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n;if(copy[lang][k])el.textContent=copy[lang][k]});
+    document.querySelectorAll('[data-placeholder]').forEach(el=>{el.placeholder=tr(el.dataset.placeholder)});
+    $('language').textContent=lang==='en'?'हिन्दी':'English';$('language').setAttribute('aria-label',lang==='en'?'हिन्दी में बदलें':'Switch to English');
+    ['reminderFacility','helperFacility'].forEach(id=>{const select=$(id);Array.from(select.options).forEach(option=>{option.textContent=copy[lang].names[option.value]})});
+    if(document.body.classList.contains('large-text'))$('largeText').textContent=lang==='en'?'Restore text size':'अक्षर का आकार वापस करें';
+    renderFacilities();
+    if($('helperOutput').style.display==='block')$('helperOutput').innerHTML=helperMarkup($('helperFacility').value);
+  }
+  function renderFacilities(){
+    const q=$('search').value.trim().toLowerCase();
+    const matches=Object.values(facilities).filter(f=>{const d=copy[lang];const words=[d.names[f.key],d.areas[f.key],f.address,d.descriptions[f.key]].join(' ').toLowerCase();return(selected==='all'||f.category===selected)&&words.includes(q)});
+    $('cards').innerHTML=matches.map(f=>{
+      const d=copy[lang],map='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(f.address);
+      const call=f.phone?`<a class="action call" href="tel:${f.phone.replace(/[^+\d]/g,'')}">${phoneIcon()}${d.call}</a>`:`<span class="no-phone">${d.noPhone}</span>`;
+      const emergency=f.emergency?`<a class="action" href="tel:${f.emergency.replace(/[^+\d]/g,'')}">${phoneIcon()}${d.emergencyContact}</a>`:'';
+      const appointment=f.appointmentSource?`<a class="action" href="${f.appointmentSource}" target="_blank" rel="noopener">${d.openGuidance}</a>`:'';
+      return `<article class="card"><div class="card-top"><span class="card-icon">${clinicIcon()}</span><span class="kind">${d.facilityType}</span></div><h3>${d.names[f.key]}</h3><div class="location">${pinIcon()}<span>${d.areas[f.key]}</span></div><p class="desc">${d.descriptions[f.key]}</p><div class="status-row"><span class="status"><b>${d.availabilityLabel}</b>${d.notLive}</span><span class="status"><b>${d.queueLabel}</b>${d.notPublished}</span></div><div class="phone-line">${f.phone?d.mainContact:d.noPhone}<strong>${f.phone||d.noPhone}</strong></div><div class="actions">${call}${emergency}<a class="action" href="${map}" target="_blank" rel="noopener">${d.directions}</a><a class="action" href="${f.source}" target="_blank" rel="noopener">${d.officialSource}</a>${appointment}<button class="action helper-pick" type="button" data-facility="${f.key}">${d.helperTitle}</button></div></article>`;
+    }).join('');
+    $('count').textContent=lang==='en'?`${matches.length} ${matches.length===1?'facility':'facilities'}`:`${matches.length} केंद्र`;
+    $('empty').style.display=matches.length?'none':'block';
+    document.querySelectorAll('.helper-pick').forEach(button=>button.addEventListener('click',()=>{$('helperFacility').value=button.dataset.facility;setOptions();$('helperOutput').style.display='block';$('helperOutput').innerHTML=helperMarkup(button.dataset.facility);$('helperOutput').scrollIntoView({behavior:'smooth',block:'center'})}));
+  }
+  function setOptions(){['reminderFacility','helperFacility'].forEach(id=>Array.from($(id).options).forEach(option=>{option.textContent=copy[lang].names[option.value]}))}
+  function helperMarkup(key){const f=facilities[key],d=copy[lang];return `<strong>${d.helperTitleLine}: ${d.names[key]}</strong><p><b>${d.helperPlace}:</b> ${d.areas[key]}</p><p><b>${d.helperCall}:</b> ${f.phone||d.noPhone}${f.emergency?` · ${d.emergencyContact}: ${f.emergency}`:''}</p><p><b>${d.helperAvailability}:</b> ${d.notLive} · <b>${d.helperQueue}:</b> ${d.notPublished}</p><p>${d.helperConfirm}</p><a href="${f.source}" target="_blank" rel="noopener">${d.officialSource}</a>`}
+  function utcStamp(date){return date.toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'')}
+  $('language').addEventListener('click',()=>setLanguage(lang==='en'?'hi':'en'));
+  $('search').addEventListener('input',renderFacilities);
+  document.querySelectorAll('.filter').forEach(button=>button.addEventListener('click',()=>{selected=button.dataset.filter;document.querySelectorAll('.filter').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));renderFacilities()}));
+  $('makeReminder').addEventListener('click',()=>{const date=$('reminderDate').value,time=$('reminderTime').value,key=$('reminderFacility').value;if(!date||!time||new Date(`${date}T${time}`)<=new Date()){$('reminderStatus').textContent=tr('reminderInvalid');return}const start=new Date(`${date}T${time}`),end=new Date(start.getTime()+30*60000),name=copy[lang].names[key],location=facilities[key].address;const ics=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//SwasthyaReach//Follow-up//EN','BEGIN:VEVENT',`UID:${Date.now()}@swasthyareach.local`,`DTSTAMP:${utcStamp(new Date())}`,`DTSTART:${utcStamp(start)}`,`DTEND:${utcStamp(end)}`,`SUMMARY:SwasthyaReach follow-up — ${name}`,`DESCRIPTION:Follow-up reminder created on this device. Confirm current service details with the facility.`,`LOCATION:${location}`,'END:VEVENT','END:VCALENDAR'].join('\r\n');const blob=new Blob([ics],{type:'text/calendar;charset=utf-8'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='SwasthyaReach_follow_up.ics';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),1000);$('reminderStatus').textContent=tr('reminderDone')});
+  $('makeHelper').addEventListener('click',()=>{$('helperOutput').style.display='block';$('helperOutput').innerHTML=helperMarkup($('helperFacility').value)});
+  $('largeText').addEventListener('click',()=>{document.body.classList.toggle('large-text');$('largeText').textContent=document.body.classList.contains('large-text')?(lang==='en'?'Restore text size':'अक्षर का आकार वापस करें'):tr('largeText')});
+  setLanguage('en');
+  </script>
+</body>
+</html>
